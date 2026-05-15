@@ -15,21 +15,27 @@
             padding: 0;
         }
         :root {
-            --gold: #f7d44a;
-            --gold-light: #ffe484;
-            --deep: #1a0a2e;
-            --pink: #ff6b9d;
-            --teal: #00c9a7;
-            --cream: #fff9f0;
-            --text: #1a0a2e;
+            --gold: #ffcf33;
+            --gold-light: #fff1a8;
+            --deep: #522067;
+            --pink: #ff4f9f;
+            --teal: #00cdb7;
+            --cream: #fffdf5;
+            --sky: #7bdff2;
+            --coral: #ff8a5c;
+            --lavender: #cbb6ff;
+            --text: #35144a;
+            --muted: #7a5b88;
+            --card: rgba(255, 255, 255, 0.82);
+            --card-border: rgba(255, 255, 255, 0.72);
         }
         html {
             scroll-behavior: smooth;
         }
         body {
             font-family: 'DM Sans', sans-serif;
-            background: linear-gradient(180deg, #1a0a2e 0%, #2d1154 100%);
-            color: #fff;
+            background: linear-gradient(180deg, #fff7d6 0%, #ffe0ef 46%, #dcfbff 100%);
+            color: var(--text);
             overflow-x: hidden;
             position: relative;
         }
@@ -42,14 +48,19 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 0;
+            z-index: 2;
+            overflow: hidden;
         }
         .floaty-img {
             position: absolute;
-            opacity: 0.35;
+            opacity: 0.24;
             transition: opacity 0.3s;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 4px solid rgba(255, 255, 255, 0.78);
+            border-radius: 999px;
+            object-fit: cover;
+            box-shadow: 0 12px 34px rgba(255, 79, 159, 0.22);
+            filter: saturate(1.08);
+            transform: translate3d(0, 0, 0);
         }
 
         /* ── CANVAS ── */
@@ -78,7 +89,7 @@
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(82, 32, 103, 0.2);
             cursor: pointer;
             transition: all 0.3s;
             border: none;
@@ -97,25 +108,28 @@
             justify-content: center;
             padding: 60px 20px;
             position: relative;
-            z-index: 1;
+            z-index: auto;
+        }
+
+        section > * {
+            position: relative;
+            z-index: 4;
         }
 
         /* ── SECTION 1: HERO ── */
         #hero {
-            background: linear-gradient(135deg, #1a0a2e 0%, #2d1154 50%, #1a0a2e 100%);
+            background: linear-gradient(135deg, #fff3a7 0%, #ffc8e1 45%, #aef6ff 100%);
             text-align: center;
             overflow: hidden;
         }
         .hero-stars {
             position: absolute;
             inset: 0;
-            background-image: radial-gradient(2px 2px at 20% 30%, rgba(255, 255, 255, 0.4), transparent),
-                radial-gradient(2px 2px at 80% 10%, rgba(255, 255, 255, 0.3), transparent),
-                radial-gradient(1px 1px at 60% 70%, rgba(255, 255, 255, 0.5), transparent),
-                radial-gradient(2px 2px at 10% 80%, rgba(255, 255, 255, 0.2), transparent),
-                radial-gradient(1px 1px at 90% 60%, rgba(255, 255, 255, 0.4), transparent),
-                radial-gradient(2px 2px at 40% 90%, rgba(255, 255, 255, 0.3), transparent),
-                radial-gradient(1px 1px at 70% 40%, rgba(255, 255, 255, 0.5), transparent);
+            background-image: radial-gradient(120px 120px at 18% 24%, rgba(255, 255, 255, 0.55), transparent),
+                radial-gradient(180px 180px at 82% 14%, rgba(255, 79, 159, 0.24), transparent),
+                radial-gradient(150px 150px at 68% 78%, rgba(0, 205, 183, 0.22), transparent),
+                radial-gradient(100px 100px at 12% 82%, rgba(255, 138, 92, 0.24), transparent),
+                radial-gradient(2px 2px at 38% 58%, rgba(82, 32, 103, 0.22), transparent);
         }
         .crown {
             font-size: clamp(60px, 15vw, 100px);
@@ -136,7 +150,7 @@
             font-size: 12px;
             letter-spacing: 0.5em;
             text-transform: uppercase;
-            color: var(--gold);
+            color: var(--deep);
             margin-bottom: 16px;
             opacity: 0;
             animation: fade-up 0.8s 0.3s forwards;
@@ -145,7 +159,7 @@
             font-family: 'Playfair Display', serif;
             font-size: clamp(42px, 12vw, 90px);
             font-weight: 700;
-            background: linear-gradient(135deg, var(--gold-light), var(--gold), #f5a623);
+            background: linear-gradient(135deg, #ff4f9f, #ff8a5c, #00bfae);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -158,14 +172,14 @@
             font-family: 'Playfair Display', serif;
             font-style: italic;
             font-size: clamp(28px, 8vw, 56px);
-            color: #fff;
+            color: var(--deep);
             opacity: 0;
             animation: fade-up 0.8s 0.7s forwards;
             margin-bottom: 24px;
         }
         .hero-from {
             font-size: 13px;
-            color: rgba(255, 255, 255, 0.5);
+            color: var(--muted);
             opacity: 0;
             animation: fade-up 0.8s 0.9s forwards;
             margin-bottom: 40px;
@@ -176,8 +190,8 @@
         }
         .btn-gold {
             display: inline-block;
-            background: var(--gold);
-            color: #1a0a2e;
+            background: linear-gradient(135deg, var(--pink), var(--coral));
+            color: #fff;
             font-weight: 500;
             font-size: 15px;
             padding: 14px 36px;
@@ -186,11 +200,11 @@
             cursor: pointer;
             text-decoration: none;
             transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 0 30px rgba(247, 212, 74, 0.4);
+            box-shadow: 0 14px 36px rgba(255, 79, 159, 0.3);
         }
         .btn-gold:hover {
             transform: translateY(-2px);
-            box-shadow: 0 0 50px rgba(247, 212, 74, 0.6);
+            box-shadow: 0 18px 46px rgba(255, 79, 159, 0.42);
         }
         @keyframes fade-up {
             from {
@@ -205,7 +219,7 @@
 
         /* ── SECTION 2: MEME GALLERY ── */
         #memes {
-            background: linear-gradient(135deg, #2d1b4e, #1e3a5f, #0f1923);
+            background: linear-gradient(135deg, #fff7c2, #ffd6e8 45%, #c8fbff);
             padding: 60px 20px;
         }
         .section-title {
@@ -213,14 +227,14 @@
             font-size: clamp(28px, 8vw, 48px);
             text-align: center;
             margin-bottom: 8px;
-            background: linear-gradient(to right, var(--pink), var(--gold), var(--teal));
+            background: linear-gradient(to right, var(--pink), var(--coral), #00a896);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
             display: inline-block;
         }
         .section-sub {
-            color: rgba(255, 255, 255, 0.5);
+            color: var(--muted);
             text-align: center;
             margin-bottom: 40px;
             font-size: 14px;
@@ -233,10 +247,11 @@
             width: 100%;
         }
         .meme-card {
-            background: #1a2535;
+            background: var(--card);
             border-radius: 16px;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--card-border);
+            box-shadow: 0 18px 50px rgba(82, 32, 103, 0.12);
             transition: transform 0.2s;
         }
         .meme-card:hover {
@@ -249,7 +264,7 @@
             align-items: center;
             justify-content: center;
             font-size: clamp(60px, 12vw, 90px);
-            background: linear-gradient(135deg, #1a2535, #0f1923);
+            background: linear-gradient(135deg, #fff1a8, #ffc8e1, #abf3ff);
             position: relative;
             overflow: hidden;
         }
@@ -263,7 +278,7 @@
             font-size: clamp(14px, 4vw, 20px);
             color: #fff;
             text-align: center;
-            text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;
+            text-shadow: 2px 2px 0 rgba(82, 32, 103, 0.45), -2px -2px 0 rgba(255, 79, 159, 0.28);
             width: 90%;
             letter-spacing: 0.05em;
         }
@@ -277,25 +292,148 @@
             font-size: clamp(14px, 4vw, 20px);
             color: #fff;
             text-align: center;
-            text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000;
+            text-shadow: 2px 2px 0 rgba(82, 32, 103, 0.45), -2px -2px 0 rgba(255, 79, 159, 0.28);
             width: 90%;
             letter-spacing: 0.05em;
         }
         .meme-caption {
             padding: 14px 16px;
             font-size: 13px;
-            color: rgba(255, 255, 255, 0.6);
+            color: var(--muted);
             line-height: 1.5;
+        }
+
+        /* -- MEMORY STORY CAROUSEL -- */
+        #memories {
+            background: linear-gradient(135deg, #fffdf5 0%, #ffe0ef 45%, #d7faff 100%);
+            padding: 70px 20px;
+        }
+        .story-carousel {
+            max-width: 940px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr);
+            gap: 24px;
+            align-items: stretch;
+        }
+        .story-photo-wrap {
+            min-height: 520px;
+            border-radius: 28px;
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(135deg, #fff1a8, #ffc8e1);
+            border: 1px solid var(--card-border);
+            box-shadow: 0 24px 60px rgba(82, 32, 103, 0.16);
+        }
+        .story-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: opacity 0.35s ease, transform 0.35s ease;
+        }
+        .story-kicker {
+            position: absolute;
+            top: 18px;
+            left: 18px;
+            right: 18px;
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            align-items: center;
+        }
+        .story-badge,
+        .story-count {
+            background: rgba(255, 255, 255, 0.82);
+            color: var(--deep);
+            border: 1px solid rgba(255, 255, 255, 0.78);
+            border-radius: 999px;
+            padding: 8px 13px;
+            font-size: 12px;
+            font-weight: 700;
+            box-shadow: 0 10px 24px rgba(82, 32, 103, 0.12);
+        }
+        .story-panel {
+            background: var(--card);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: 0 18px 50px rgba(82, 32, 103, 0.12);
+        }
+        .story-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(28px, 5vw, 46px);
+            line-height: 1.08;
+            margin-bottom: 14px;
+            color: var(--deep);
+        }
+        .story-text {
+            color: var(--muted);
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 24px;
+        }
+        .story-controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .story-arrow {
+            width: 44px;
+            height: 44px;
+            border: none;
+            border-radius: 999px;
+            background: linear-gradient(135deg, var(--pink), var(--coral));
+            color: #fff;
+            cursor: pointer;
+            font-size: 22px;
+            line-height: 1;
+            box-shadow: 0 12px 28px rgba(255, 79, 159, 0.24);
+        }
+        .story-dots {
+            display: flex;
+            gap: 7px;
+            justify-content: center;
+            flex: 1;
+        }
+        .story-dot {
+            width: 8px;
+            height: 8px;
+            border: none;
+            border-radius: 999px;
+            background: rgba(82, 32, 103, 0.18);
+            cursor: pointer;
+            transition: width 0.2s, background 0.2s;
+        }
+        .story-dot.active {
+            width: 22px;
+            background: var(--pink);
+        }
+
+        @media (max-width: 760px) {
+            .story-carousel {
+                grid-template-columns: 1fr;
+            }
+            .story-photo-wrap {
+                min-height: 380px;
+            }
+            .story-panel {
+                padding: 24px;
+            }
         }
 
         /* ── SECTION 3: SONG ── */
         #song {
-            background: linear-gradient(180deg, #1e2b3c, #442a4b);
+            background: linear-gradient(180deg, #e5fbff, #fff0b8);
             text-align: center;
         }
         .song-player {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(247, 212, 74, 0.3);
+            background: var(--card);
+            border: 1px solid var(--card-border);
             border-radius: 24px;
             padding: 36px 28px;
             max-width: 380px;
@@ -306,13 +444,13 @@
             width: 120px;
             height: 120px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--gold), #f5a623);
+            background: linear-gradient(135deg, var(--gold), var(--pink), var(--sky));
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 48px;
             margin: 0 auto 24px;
-            border: 4px solid rgba(247, 212, 74, 0.3);
+            border: 4px solid rgba(255, 255, 255, 0.65);
             transition: transform 0.1s;
         }
         .song-disc.spinning {
@@ -333,7 +471,7 @@
         }
         .song-artist {
             font-size: 13px;
-            color: rgba(255, 255, 255, 0.5);
+            color: var(--muted);
             margin-bottom: 28px;
         }
         .visualizer {
@@ -347,7 +485,7 @@
         .bar {
             width: 6px;
             border-radius: 3px;
-            background: linear-gradient(to top, var(--gold), var(--gold-light));
+            background: linear-gradient(to top, var(--teal), var(--pink));
             height: 8px;
             transition: height 0.1s;
         }
@@ -355,34 +493,35 @@
             width: 60px;
             height: 60px;
             border-radius: 50%;
-            background: var(--gold);
+            background: linear-gradient(135deg, var(--gold), var(--coral));
             border: none;
             cursor: pointer;
             font-size: 22px;
-            color: #1a0a2e;
+            color: var(--deep);
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto;
             transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 0 30px rgba(247, 212, 74, 0.4);
+            box-shadow: 0 12px 30px rgba(255, 138, 92, 0.32);
         }
         .play-btn:hover {
             transform: scale(1.05);
-            box-shadow: 0 0 50px rgba(247, 212, 74, 0.6);
+            box-shadow: 0 16px 42px rgba(255, 138, 92, 0.44);
         }
 
         /* ── SECTION 4: QUIZ ── */
         #quiz {
-            background: linear-gradient(135deg, #0f1923, #2d1b4e);
+            background: linear-gradient(135deg, #ffe5f1, #d7faff);
         }
         .quiz-box {
-            background: #1a2535;
+            background: var(--card);
             border-radius: 24px;
             padding: 32px 24px;
             max-width: 480px;
             width: 100%;
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--card-border);
+            box-shadow: 0 18px 50px rgba(82, 32, 103, 0.12);
         }
         .quiz-progress {
             display: flex;
@@ -393,11 +532,11 @@
             height: 4px;
             flex: 1;
             border-radius: 2px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(82, 32, 103, 0.12);
             transition: background 0.3s;
         }
         .quiz-pip.done {
-            background: var(--gold);
+            background: linear-gradient(90deg, var(--pink), var(--gold));
         }
         .quiz-q {
             font-family: 'Playfair Display', serif;
@@ -412,36 +551,36 @@
             position: relative;
         }
         .quiz-opt {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.72);
+            border: 1px solid rgba(82, 32, 103, 0.12);
             border-radius: 12px;
             padding: 14px 18px;
             font-size: 15px;
-            color: #fff;
+            color: var(--text);
             cursor: pointer;
             text-align: left;
             transition: all 0.2s;
             position: relative;
         }
         .quiz-opt:hover {
-            background: rgba(247, 212, 74, 0.15);
+            background: rgba(255, 207, 51, 0.32);
             border-color: var(--gold);
         }
         .quiz-opt.correct {
-            background: rgba(0, 201, 167, 0.2);
+            background: rgba(0, 205, 183, 0.26);
             border-color: var(--teal);
         }
         .quiz-opt.wrong {
-            background: rgba(255, 107, 157, 0.2);
+            background: rgba(255, 79, 159, 0.22);
             border-color: var(--pink);
         }
         .runaway-btn {
             position: fixed;
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.78);
+            border: 1px solid rgba(82, 32, 103, 0.16);
             border-radius: 10px;
             padding: 10px 18px;
-            color: rgba(255, 255, 255, 0.6);
+            color: var(--muted);
             font-size: 13px;
             cursor: pointer;
             transition: opacity 0.2s;
@@ -459,14 +598,14 @@
         }
         .quiz-verdict {
             font-size: 15px;
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--muted);
             line-height: 1.6;
             margin-bottom: 24px;
         }
 
         /* ── SECTION 5: APOLOGY LETTER ── */
         #apology {
-            background: linear-gradient(180deg, #0f1923, #1a0a2e);
+            background: linear-gradient(180deg, #fff6c8, #ffe0ef);
         }
         .letter-paper {
             background: var(--cream);
@@ -478,7 +617,7 @@
             font-family: 'Playfair Display', serif;
             font-style: italic;
             line-height: 1.8;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 20px 60px rgba(82, 32, 103, 0.18);
             position: relative;
         }
         .letter-paper::before {
@@ -548,14 +687,14 @@
 
         /* ── SECTION 6: FINALE ── */
         #finale {
-            background: #1a0a2e;
+            background: linear-gradient(135deg, #fff1a8, #ffc8e1 48%, #b9f7ff);
             text-align: center;
         }
         .love-reveal {
             font-family: 'Playfair Display', serif;
             font-size: clamp(36px, 10vw, 80px);
             font-weight: 700;
-            background: linear-gradient(135deg, var(--pink), var(--gold), var(--teal));
+            background: linear-gradient(135deg, var(--pink), var(--coral), var(--teal));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -572,7 +711,7 @@
             padding: 32px 28px;
             margin: 32px auto;
             text-align: center;
-            box-shadow: 0 0 0 8px rgba(247, 212, 74, 0.15), 0 20px 60px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 0 8px rgba(255, 207, 51, 0.2), 0 20px 60px rgba(82, 32, 103, 0.18);
         }
         .cert-title {
             font-family: 'Playfair Display', serif;
@@ -608,8 +747,8 @@
             display: block;
         }
         .roast-box {
-            background: rgba(255, 107, 157, 0.1);
-            border: 1px solid rgba(255, 107, 157, 0.3);
+            background: rgba(255, 255, 255, 0.64);
+            border: 1px solid rgba(255, 79, 159, 0.24);
             border-radius: 16px;
             max-width: 440px;
             width: 100%;
@@ -625,32 +764,33 @@
         .roast-text {
             font-size: 14px;
             line-height: 1.7;
-            color: rgba(255, 255, 255, 0.8);
+            color: var(--muted);
         }
 
         /* ── SECTION 7: COMMENTS ── */
         #comments {
-            background: #0f1923;
+            background: linear-gradient(180deg, #e1fbff, #fff7cf);
         }
         .comments-wrap {
             max-width: 600px;
             width: 100%;
         }
         .comment-form {
-            background: #1a2535;
+            background: var(--card);
             border-radius: 20px;
             padding: 24px;
             margin-bottom: 32px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--card-border);
+            box-shadow: 0 18px 50px rgba(82, 32, 103, 0.12);
         }
         .comment-form input,
         .comment-form textarea {
             width: 100%;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(255, 255, 255, 0.78);
+            border: 1px solid rgba(82, 32, 103, 0.12);
             border-radius: 10px;
             padding: 12px 16px;
-            color: #fff;
+            color: var(--text);
             font-family: 'DM Sans', sans-serif;
             font-size: 15px;
             margin-bottom: 12px;
@@ -660,7 +800,7 @@
         }
         .comment-form input::placeholder,
         .comment-form textarea::placeholder {
-            color: rgba(255, 255, 255, 0.3);
+            color: rgba(122, 91, 136, 0.62);
         }
         .comment-form input:focus,
         .comment-form textarea:focus {
@@ -670,8 +810,8 @@
             height: 100px;
         }
         .submit-btn {
-            background: var(--gold);
-            color: #1a0a2e;
+            background: linear-gradient(135deg, var(--pink), var(--coral));
+            color: #fff;
             border: none;
             border-radius: 10px;
             padding: 12px 28px;
@@ -690,10 +830,10 @@
             gap: 14px;
         }
         .comment-item {
-            background: #1a2535;
+            background: var(--card);
             border-radius: 14px;
             padding: 18px 20px;
-            border: 1px solid rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--card-border);
             animation: slide-in 0.4s ease;
         }
         @keyframes slide-in {
@@ -714,18 +854,18 @@
         }
         .comment-text {
             font-size: 14px;
-            color: rgba(255, 255, 255, 0.8);
+            color: var(--muted);
             line-height: 1.6;
         }
         .comment-time {
             font-size: 11px;
-            color: rgba(255, 255, 255, 0.3);
+            color: rgba(122, 91, 136, 0.58);
             margin-top: 6px;
         }
         .empty-comments {
             text-align: center;
             padding: 40px 20px;
-            color: rgba(255, 255, 255, 0.3);
+            color: rgba(122, 91, 136, 0.58);
             font-style: italic;
         }
 
@@ -757,6 +897,7 @@
 
     <nav class="nav-dots" aria-label="Page sections">
         <button class="nav-dot active" onclick="scrollToSection('hero')" aria-label="Hero"></button>
+        <button class="nav-dot" onclick="scrollToSection('memories')" aria-label="Memories"></button>
         <button class="nav-dot" onclick="scrollToSection('memes')" aria-label="Memes"></button>
         <button class="nav-dot" onclick="scrollToSection('song')" aria-label="Song"></button>
         <button class="nav-dot" onclick="scrollToSection('quiz')" aria-label="Quiz"></button>
@@ -774,11 +915,39 @@
         <h2 class="hero-name2">Matenda</h2>
         <p class="hero-from">Lovingly (and belatedly) brought to you by Arthur Weale</p>
         <div class="hero-cta">
-            <button class="btn-gold" onclick="launchConfetti();scrollToSection('memes')">Begin the Celebration 🎉</button>
+            <button class="btn-gold" onclick="launchConfetti();scrollToSection('memories')">Begin the Celebration 🎉</button>
         </div>
     </section>
 
     <!-- ══ MEMES ══ -->
+    <!-- MEMORY STORY -->
+    <section id="memories">
+        <h2 class="section-title">A Story in Photos</h2>
+        <p class="section-sub">Little windows into the love, sacrifice, laughter, and life Bongai has poured into Arthur</p>
+
+        <div class="story-carousel" aria-live="polite">
+            <div class="story-photo-wrap">
+                <img class="story-photo" id="story-photo" src="images/IMG_2963.JPG" alt="Bongai giving pocket money" />
+                <div class="story-kicker">
+                    <span class="story-badge" id="story-badge">Sacrifice</span>
+                    <span class="story-count" id="story-count">1 / 8</span>
+                </div>
+            </div>
+
+            <div class="story-panel">
+                <h3 class="story-title" id="story-title">The Pocket Money Moment</h3>
+                <p class="story-text" id="story-text">
+                    This is a mother giving from herself, not because it was easy, but because love always found a way. Every note carried sacrifice, protection, and the quiet promise that Arthur would never walk alone.
+                </p>
+                <div class="story-controls">
+                    <button class="story-arrow" onclick="prevStory()" aria-label="Previous memory">&lsaquo;</button>
+                    <div class="story-dots" id="story-dots" aria-label="Memory carousel pages"></div>
+                    <button class="story-arrow" onclick="nextStory()" aria-label="Next memory">&rsaquo;</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="memes">
         <h2 class="section-title">The Meme Gallery</h2>
         <p class="section-sub">Curated art, for an extraordinary woman</p>
@@ -890,7 +1059,7 @@
     <!-- ══ FINALE ══ -->
     <section id="finale">
         <div class="love-reveal">I love you,<br />Mum ❤️</div>
-        <p style="color:rgba(255,255,255,0.6);margin-bottom:32px;font-size:15px">
+        <p style="color:var(--muted);margin-bottom:32px;font-size:15px">
             From the bottom of Arthur's very forgetful heart
         </p>
 
@@ -930,7 +1099,7 @@
                     Your message becomes part of Bongai's birthday memory book 💛
                 </p>
                 <button class="submit-btn" onclick="submitComment()">Send Birthday Wish 🎉</button>
-                <p id="submit-status" style="text-align:center;font-size:13px;color:rgba(255,255,255,0.4);margin-top:10px;min-height:18px"></p>
+                <p id="submit-status" style="text-align:center;font-size:13px;color:rgba(122,91,136,0.65);margin-top:10px;min-height:18px"></p>
             </div>
 
             <div class="comment-list" id="comment-list">
@@ -944,9 +1113,90 @@
         // CONFIGURATION – ADD YOUR FLOATING IMAGE URLs HERE
         // ═══════════════════════════════════════════
         const FLOATING_IMAGES_URLS = [
-            // Add your image links here, for example:
-            "https://photos.app.goo.gl/Ltdbp3gbt2FEcpao8",
-            // "https://example.com/bongai2.jpg",
+            'images/IMG_2915.JPG',
+            'images/IMG_2917.JPG',
+            'images/IMG_2920.JPG',
+            'images/IMG_2922.JPG',
+            'images/IMG_2925.JPG',
+            'images/IMG_2963.JPG',
+            'images/IMG_3019.JPG',
+            'images/IMG_3137.JPG',
+            'images/IMG_3183.JPG',
+            'images/IMG_5233.JPG',
+            'images/IMG_E2899.JPG',
+        ];
+
+        const STORY_SLIDES = [
+            {
+                image: 'images/IMG_2963.JPG',
+                badge: 'Sacrifice',
+                alt: 'Bongai giving pocket money',
+                title: 'The Pocket Money Moment',
+                text: 'This is a mother giving from herself, not because it was easy, but because love always found a way. Every note carried sacrifice, protection, and the quiet promise that Arthur would never walk alone.',
+            },
+            {
+                image: 'images/IMG_2915.JPG',
+                badge: 'Young Bongai',
+                alt: 'Bongai when she was young',
+                title: 'Before She Was Mum',
+                text: 'Before Arthur knew her as Mum, she was already Bongai: bright, beautiful, full of dreams, and carrying the kind of strength that would one day become a home for her child.',
+            },
+            {
+                image: 'images/IMG_2917.JPG',
+                badge: 'Young Bongai',
+                alt: 'Young Bongai smiling',
+                title: 'The Girl With Light in Her',
+                text: 'These younger photos feel like a reminder that mothers have whole lives before us. She had her own laughter, style, softness, courage, and becoming long before she began giving so much to everyone else.',
+            },
+            {
+                image: 'images/IMG_2920.JPG',
+                badge: 'Young Bongai',
+                alt: 'A younger photo of Bongai',
+                title: 'A Life Still Opening',
+                text: 'There is something powerful about seeing her young: the same eyes, the same spirit, the same grace. Time changed the seasons around her, but it never took the beauty at the center.',
+            },
+            {
+                image: 'images/IMG_2922.JPG',
+                badge: 'Young Bongai',
+                alt: 'Bongai in her younger days',
+                title: 'The Woman Behind the Mother',
+                text: 'This is the woman Arthur is lucky to call Mum. Not only a parent, but a person with her own story, her own radiance, and a life that deserves to be celebrated fully.',
+            },
+            {
+                image: 'images/IMG_2925.JPG',
+                badge: 'Goofing Around',
+                alt: 'Arthur and Bongai goofing around',
+                title: 'Our Silly Little Language',
+                text: 'Some love is serious, and some love is laughing until nothing makes sense. These are the moments where mother and son become best friends for a while, sharing jokes only they understand.',
+            },
+            {
+                image: 'images/IMG_3137.JPG',
+                badge: 'Goofing Around',
+                alt: 'Arthur and Bongai sharing a fun moment',
+                title: 'Joy That Feels Like Home',
+                text: 'With her, even ordinary moments can become stories. A face, a joke, a random burst of laughter: somehow she turns simple time together into memories Arthur gets to carry forever.',
+            },
+            {
+                image: 'images/IMG_E2899.JPG',
+                badge: 'Goofing Around',
+                alt: 'Arthur and Bongai being playful together',
+                title: 'Proof We Are Not Normal',
+                text: 'This is the good kind of chaos. The kind that says we are family, we are safe, and we can be completely ridiculous together because the love underneath is never in question.',
+            },
+            {
+                image: 'images/IMG_3183.JPG',
+                badge: 'Provider',
+                alt: 'Bongai going to work',
+                title: 'The Work Behind the Fees',
+                text: 'She went to work so Arthur could go to school. Behind every fee paid was effort, tired mornings, discipline, and a mother choosing her child again and again, even when it cost her comfort.',
+            },
+            {
+                image: 'images/IMG_5233.JPG',
+                badge: 'Baby Arthur',
+                alt: 'Arthur as a baby',
+                title: 'Where the Story Began',
+                text: 'Before the jokes, the late birthday website, and all the memories, there was this small beginning. A baby held inside a mother\'s love, growing into a son who now gets to say thank you.',
+            },
         ];
 
         // ═══════════════════════════════════════════
@@ -958,7 +1208,7 @@
         function scrollToSection(id) {
             document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
         }
-        const sections = ['hero', 'memes', 'song', 'quiz', 'apology', 'finale', 'comments'];
+        const sections = ['hero', 'memories', 'memes', 'song', 'quiz', 'apology', 'finale', 'comments'];
         const dots = document.querySelectorAll('.nav-dot');
         window.addEventListener('scroll', () => {
             let cur = 0;
@@ -981,7 +1231,7 @@
         }
         resizeCanvas();
         window.addEventListener('resize', resizeCanvas);
-        const COLORS = ['#f7d44a', '#ff6b9d', '#00c9a7', '#ffe484', '#fff', '#f5a623'];
+        const COLORS = ['#ffcf33', '#ff4f9f', '#00cdb7', '#7bdff2', '#ff8a5c', '#cbb6ff'];
         function launchConfetti() {
             for (let i = 0; i < 120; i++) {
                 pieces.push({
@@ -1025,15 +1275,16 @@
             if (!FLOATING_IMAGES_URLS.length) return;
 
             const imageObjects = [];
-            FLOATING_IMAGES_URLS.forEach((url) => {
+            FLOATING_IMAGES_URLS.forEach((url, index) => {
                 const img = document.createElement('img');
                 img.src = url;
+                img.alt = '';
                 img.className = 'floaty-img';
-                const size = 80 + Math.random() * 120;
+                const size = 86 + Math.random() * 84;
                 img.style.width = size + 'px';
                 img.style.height = size + 'px';
-                img.style.left = Math.random() * 90 + '%';
-                img.style.top = Math.random() * 90 + '%';
+                img.style.left = ((index * 19) % 88) + Math.random() * 6 + '%';
+                img.style.top = ((index * 29) % 86) + Math.random() * 8 + '%';
                 container.appendChild(img);
 
                 imageObjects.push({
@@ -1041,30 +1292,89 @@
                     x: parseFloat(img.style.left),
                     y: parseFloat(img.style.top),
                     size,
-                    speedX: (Math.random() - 0.5) * 0.3,
-                    speedY: (Math.random() - 0.5) * 0.3,
+                    baseX: parseFloat(img.style.left),
+                    baseY: parseFloat(img.style.top),
                     phaseX: Math.random() * Math.PI * 2,
                     phaseY: Math.random() * Math.PI * 2,
-                    drift: 0.02 + Math.random() * 0.04,
+                    drift: 0.00025 + Math.random() * 0.00028,
+                    radiusX: 1.4 + Math.random() * 2.8,
+                    radiusY: 1.2 + Math.random() * 2.4,
+                    rotate: -8 + Math.random() * 16,
                 });
             });
 
             // Animation loop for floating images
             function animateImages() {
+                const now = Date.now();
                 imageObjects.forEach((obj) => {
-                    obj.x += Math.sin(Date.now() * obj.drift + obj.phaseX) * 0.08;
-                    obj.y += Math.cos(Date.now() * obj.drift * 1.3 + obj.phaseY) * 0.08;
+                    obj.x = obj.baseX + Math.sin(now * obj.drift + obj.phaseX) * obj.radiusX;
+                    obj.y = obj.baseY + Math.cos(now * obj.drift * 1.35 + obj.phaseY) * obj.radiusY;
                     // Keep inside viewport
-                    obj.x = Math.max(0, Math.min(100, obj.x));
-                    obj.y = Math.max(0, Math.min(100, obj.y));
+                    obj.x = Math.max(-4, Math.min(94, obj.x));
+                    obj.y = Math.max(-4, Math.min(94, obj.y));
                     obj.el.style.left = obj.x + '%';
                     obj.el.style.top = obj.y + '%';
+                    obj.el.style.transform = `rotate(${obj.rotate + Math.sin(now * obj.drift + obj.phaseY) * 4}deg)`;
                 });
                 requestAnimationFrame(animateImages);
             }
             animateImages();
         }
         initFloatingImages();
+
+        // -- STORY CAROUSEL --
+        let storyIndex = 0;
+        const storyPhoto = document.getElementById('story-photo');
+        const storyBadge = document.getElementById('story-badge');
+        const storyCount = document.getElementById('story-count');
+        const storyTitle = document.getElementById('story-title');
+        const storyText = document.getElementById('story-text');
+        const storyDots = document.getElementById('story-dots');
+
+        function initStoryCarousel() {
+            if (!storyDots) return;
+            storyDots.innerHTML = STORY_SLIDES.map(
+                (_, i) => `<button class="story-dot" onclick="goToStory(${i})" aria-label="Go to memory ${i + 1}"></button>`
+            ).join('');
+            renderStory();
+        }
+
+        function renderStory() {
+            const slide = STORY_SLIDES[storyIndex];
+            if (!slide || !storyPhoto) return;
+            storyPhoto.style.opacity = '0';
+            storyPhoto.style.transform = 'scale(1.015)';
+            setTimeout(() => {
+                storyPhoto.src = slide.image;
+                storyPhoto.alt = slide.alt;
+                storyBadge.textContent = slide.badge;
+                storyCount.textContent = `${storyIndex + 1} / ${STORY_SLIDES.length}`;
+                storyTitle.textContent = slide.title;
+                storyText.textContent = slide.text;
+                document.querySelectorAll('.story-dot').forEach((dot, i) => {
+                    dot.classList.toggle('active', i === storyIndex);
+                });
+                storyPhoto.style.opacity = '1';
+                storyPhoto.style.transform = 'scale(1)';
+            }, 160);
+        }
+
+        function nextStory() {
+            storyIndex = (storyIndex + 1) % STORY_SLIDES.length;
+            renderStory();
+        }
+
+        function prevStory() {
+            storyIndex = (storyIndex - 1 + STORY_SLIDES.length) % STORY_SLIDES.length;
+            renderStory();
+        }
+
+        function goToStory(index) {
+            storyIndex = index;
+            renderStory();
+        }
+
+        initStoryCarousel();
 
         // ── FIREWORKS ──
         function launchFireworks() {
@@ -1376,7 +1686,7 @@
                 sep.className = 'comment-item';
                 sep.style.textAlign = 'center';
                 sep.style.fontStyle = 'italic';
-                sep.style.color = 'rgba(255,255,255,0.5)';
+                sep.style.color = 'rgba(122,91,136,0.65)';
                 sep.textContent = '🌍 Worldwide Wishes 🌍';
                 list.appendChild(sep);
             }
